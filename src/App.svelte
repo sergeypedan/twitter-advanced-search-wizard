@@ -95,6 +95,26 @@
 		fmt_min_replies(min_replies),
 		fmt_min_retweets(min_retweets),
 	].filter(string => !!string).join(" ")
+
+	function set_button_success(button) {
+		button.classList.add('is-success')
+		button.querySelector('[data-role="text"]').innerText = 'Copied!'
+	}
+
+	function reset_button(button) {
+		button.classList.remove('is-success')
+		button.querySelector('[data-role="text"]').innerText = button.dataset.originalText
+	}
+
+	var clipboard = new ClipboardJS('[data-clipboard-target]')
+	clipboard.on('success', function(event) {
+		event.clearSelection()
+		let button = event.trigger
+		button.disabled = true
+		set_button_success(button)
+		setTimeout(function () { reset_button(button); button.disabled = false }, 1500)
+	})
+
 </script>
 
 <div class="section">
@@ -105,8 +125,14 @@
 				<textarea id="search_result" class="textarea" readonly>{query()}</textarea>
 			</div>
 		</div>
+
+		<button class="button is-rounded" data-clipboard-target="#search_result" disabled={query() === ''} data-original-text='Copy to clipboard'>
+			<span class="icon"><i class="far fa-copy"></i></span>
+			<span data-role="text">Copy to clipboard</span>
+		</button>
 	</div>
 </div>
+
 
 <section class="section">
 	<div class="columns">
