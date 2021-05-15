@@ -1,26 +1,26 @@
 <script lang="ts">
-	import ClipboardJS from 'clipboard';
+  import { listen_copy_on_selector } from './utils/copying.js'
 
 	import Checkbox    from './Checkbox.svelte';
 	import InputDate   from './InputDate.svelte';
 	import InputNumber from './InputNumber.svelte';
 	import InputText   from './InputText.svelte';
 
-	let author_username:   string  = '';
-	let date_since:        string  = '';
-	let date_until:        string  = '';
-	let exact_phrase:      string  = '';
-	let exclude_word:      string  = '';
-	let language:          string  = '';
-	let link_to_domain:    string  = '';
-	let mention_username:  string  = '';
-	let reply_to_username: string  = '';
-	let tweet_id_min:      string  = '';
-	let tweet_id_max:      string  = '';
+	let author_username:   string = '';
+	let date_since:        string = '';
+	let date_until:        string = '';
+	let exact_phrase:      string = '';
+	let exclude_word:      string = '';
+	let language:          string = '';
+	let link_to_domain:    string = '';
+	let mention_username:  string = '';
+	let reply_to_username: string = '';
+	let tweet_id_min:      string = '';
+	let tweet_id_max:      string = '';
 
-	let min_faves:    number  = 0;
-	let min_replies:  number  = 0;
-	let min_retweets: number  = 0;
+	let min_faves:    number = 0;
+	let min_replies:  number = 0;
+	let min_retweets: number = 0;
 
 	let from_unverified:      boolean = false;
 	let from_verified:        boolean = false;
@@ -96,24 +96,10 @@
 		fmt_min_retweets(min_retweets),
 	].filter(string => !!string).join(" ")
 
-	function set_button_success(button) {
-		button.classList.add('is-success')
-		button.querySelector('[data-role="text"]').innerText = 'Copied!'
-	}
+  document.addEventListener('DOMContentLoaded', function() {
+    listen_copy_on_selector('[data-clipboard-target]')
+  })
 
-	function reset_button(button) {
-		button.classList.remove('is-success')
-		button.querySelector('[data-role="text"]').innerText = button.dataset.originalText
-	}
-
-	var clipboard = new ClipboardJS('[data-clipboard-target]')
-	clipboard.on('success', function(event) {
-		event.clearSelection()
-		let button = event.trigger
-		button.disabled = true
-		set_button_success(button)
-		setTimeout(function () { reset_button(button); button.disabled = false }, 1500)
-	})
 
 </script>
 
@@ -158,8 +144,8 @@
 
 				<fieldset class="box fieldset-1">
 					<legend>Dates</legend>
-					<InputDate bind:value={date_since} label='Tweets created since' placeholder="1970-05-31" />
-					<InputDate bind:value={date_until} label='Tweets created until' placeholder="2021-05-31" />
+					<InputDate bind:value={date_since}   label='Tweets created since' placeholder="1970-05-31" />
+					<InputDate bind:value={date_until}   label='Tweets created until' placeholder="2021-05-31" />
 					<InputText bind:value={tweet_id_min} label='Tweets created since the tweet with ID'  placeholder="1234567890" />
 					<InputText bind:value={tweet_id_max} label='Tweets created before the tweet with ID' placeholder="1234567890" />
 				</fieldset>
