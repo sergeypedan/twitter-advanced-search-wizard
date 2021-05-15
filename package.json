@@ -1,7 +1,7 @@
 {
-  "name": "svelte-app",
+  "name": "twitter-advanced-search-wizard",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "rollup --config",
     "dev": "rollup --config --watch",
