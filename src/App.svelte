@@ -3,15 +3,21 @@
 	import InputDate from './InputDate.svelte';
 	import InputText from './InputText.svelte';
 
-	let author_username:        string  = '';
-	let date_since:             string  = '';
-	let date_until:             string  = '';
-	let exact_phrase:           string  = '';
-	let exclude_word:           string  = '';
-	let language:               string  = '';
-	let link_to_domain:         string  = '';
-	let mention_username:       string  = '';
-	let reply_to_username:      string  = '';
+	let author_username:   string  = '';
+	let date_since:        string  = '';
+	let date_until:        string  = '';
+	let exact_phrase:      string  = '';
+	let exclude_word:      string  = '';
+	let language:          string  = '';
+	let link_to_domain:    string  = '';
+	let mention_username:  string  = '';
+	let reply_to_username: string  = '';
+	let tweet_id_min:      string  = '';
+	let tweet_id_max:      string  = '';
+
+	let min_faves:    number  = 0;
+	let min_replies:  number  = 0;
+	let min_retweets: number  = 0;
 
 	let from_unverified:      boolean = false;
 	let from_verified:        boolean = false;
@@ -41,15 +47,21 @@
 	$: fmt_with_native_retweets   = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
 	$: fmt_with_question          = function(t: boolean): string { return !t ? '' : `?` }
 
-	$: fmt_by_username       = function(term: string): string { return !term ? '' : `from:${term}` }
-	$: fmt_date_since        = function(term: string): string { return !term ? '' : `since:${term}` }
-	$: fmt_date_until        = function(term: string): string { return !term ? '' : `until:${term}` }
-	$: fmt_exact_phrase      = function(term: string): string { return !term ? '' : `"${term}"` }
-	$: fmt_exclude_word      = function(term: string): string { return !term ? '' : `-${term}` }
-	$: fmt_language          = function(term: string): string { return !term ? '' : `lang:${term}` }
-	$: fmt_link_to_domain    = function(term: string): string { return !term ? '' : `url:${term}` }
-	$: fmt_mention_username  = function(term: string): string { return !term ? '' : `@${term}` }
-	$: fmt_reply_to_username = function(term: string): string { return !term ? '' : `to:${term}` }
+	$: fmt_by_username       = function(str: string): string { return !str ? '' : `from:${str}` }
+	$: fmt_date_since        = function(str: string): string { return !str ? '' : `since:${str}` }
+	$: fmt_date_until        = function(str: string): string { return !str ? '' : `until:${str}` }
+	$: fmt_exact_phrase      = function(str: string): string { return !str ? '' : `"${str}"` }
+	$: fmt_exclude_word      = function(str: string): string { return !str ? '' : `-${str}` }
+	$: fmt_language          = function(str: string): string { return !str ? '' : `lang:${str}` }
+	$: fmt_link_to_domain    = function(str: string): string { return !str ? '' : `url:${str}` }
+	$: fmt_mention_username  = function(str: string): string { return !str ? '' : `@${str}` }
+	$: fmt_reply_to_username = function(str: string): string { return !str ? '' : `to:${str}` }
+	$: fmt_tweet_id_min      = function(str: string): string { return !str ? '' : `since_id:${str}` }
+	$: fmt_tweet_id_max      = function(str: string): string { return !str ? '' : `max_id:${str}` }
+
+	$: fmt_min_faves    = function(n: number): string { return n <= 0 ? '' : `min_faves:${n}` }
+	$: fmt_min_replies  = function(n: number): string { return n <= 0 ? '' : `min_replies:${n}` }
+	$: fmt_min_retweets = function(n: number): string { return n <= 0 ? '' : `min_retweets:${n}` }
 
 	$: query = () => [
 		fmt_with_question(with_question),
