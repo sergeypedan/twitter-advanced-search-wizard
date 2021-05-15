@@ -1,7 +1,10 @@
 <script lang="ts">
-	import Checkbox  from './Checkbox.svelte';
-	import InputDate from './InputDate.svelte';
-	import InputText from './InputText.svelte';
+	import ClipboardJS from 'clipboard';
+
+	import Checkbox    from './Checkbox.svelte';
+	import InputDate   from './InputDate.svelte';
+	import InputNumber from './InputNumber.svelte';
+	import InputText   from './InputText.svelte';
 
 	let author_username:   string  = '';
 	let date_since:        string  = '';
@@ -86,6 +89,11 @@
 		fmt_reply_to_username(reply_to_username),
 		fmt_from_verified(from_verified),
 		fmt_from_unverified(from_unverified),
+		fmt_tweet_id_min(tweet_id_min),
+		fmt_tweet_id_max(tweet_id_max),
+		fmt_min_faves(min_faves),
+		fmt_min_replies(min_replies),
+		fmt_min_retweets(min_retweets),
 	].filter(string => !!string).join(" ")
 </script>
 
@@ -114,7 +122,6 @@
 					<InputText bind:value={mention_username}  label='Tweets mentioning an account'     placeholder="username" />
 				</fieldset>
 
-
 				<fieldset class="box fieldset-1">
 					<legend>Text content</legend>
 					<InputText bind:value={exact_phrase}    label='Tweets containing an exact phrase' placeholder="I’ll be back" />
@@ -123,13 +130,13 @@
 					<Checkbox  bind:checked={with_question} label='Tweets containing a question' />
 				</fieldset>
 
-
 				<fieldset class="box fieldset-1">
 					<legend>Dates</legend>
 					<InputDate bind:value={date_since} label='Tweets created since' placeholder="1970-05-31" />
 					<InputDate bind:value={date_until} label='Tweets created until' placeholder="2021-05-31" />
+					<InputText bind:value={tweet_id_min} label='Tweets created since the tweet with ID'  placeholder="1234567890" />
+					<InputText bind:value={tweet_id_max} label='Tweets created before the tweet with ID' placeholder="1234567890" />
 				</fieldset>
-
 
 				<fieldset class="box fieldset-1">
 					<legend>Links from tweets</legend>
@@ -140,7 +147,6 @@
 					<Checkbox  bind:checked={social}        label='Social?' hint='(unclear what it means)'/>
 				</fieldset>
 
-
 				<fieldset class="box fieldset-1">
 					<legend>Media in tweets</legend>
 					<Checkbox  bind:checked={with_image_or_video} label='Tweets containing images or video' />
@@ -149,11 +155,13 @@
 					<Checkbox  bind:checked={with_attached_video} label='Tweets containing an attached video' />
 				</fieldset>
 
-
 				<fieldset class="box fieldset-1">
 					<legend>Other</legend>
-					<Checkbox  bind:checked={has_engagement}       label='Tweets that have engagement' hint='(unclear what it means)' />
-					<Checkbox  bind:checked={with_native_retweets} label='Tweets with with native retweets' />
+					<Checkbox    bind:checked={has_engagement}       label='Tweets that have engagement' hint='(unclear what it means)' />
+					<Checkbox    bind:checked={with_native_retweets} label='Tweets with with native retweets' />
+					<InputNumber bind:value={min_faves}              label='Tweets with at least N likes'    min=0 />
+					<InputNumber bind:value={min_replies}            label='Tweets with at least N replies'  min=0 />
+					<InputNumber bind:value={min_retweets}           label='Tweets with at least N retweets' min=0 />
 				</fieldset>
 
 			</div>
