@@ -2,6 +2,14 @@
 
 ## Roadmap
 
+- [x] Host on IPFS
 - [ ] Finish inputs
+- [ ] Switch to Bootstrap
+- [ ] Onboarding instructions for first-timers
 - [ ] Let inputs handle multi-word input
-- [x] Host on [IPFS](https://docs.ipfs.io/how-to/websites-on-ipfs/single-page-website/#install-ipfs-desktop)
+- [ ] Localization
+
+## Credits
+
+- [@antibot4navalny](https://twitter.com/antibot4navalny/status/1389883273212481542)
+- [@conspirator0](https://twitter.com/conspirator0)
