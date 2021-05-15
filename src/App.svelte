@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { listen_copy_on_selector } from './utils/copying.js'
+	import { listen_copy_on_selector } from './utils/copying'
 
 	import Checkbox    from './components/Checkbox.svelte';
 	import InputDate   from './components/InputDate.svelte';
 	import InputNumber from './components/InputNumber.svelte';
 	import InputText   from './components/InputText.svelte';
 
-	import * as fmt from './logic/formatters.js'
+	import * as fmt from './formtest.js'
 
 	let author_username:   string = '';
 	let date_since:        string = '';
@@ -143,9 +143,9 @@
 					<legend>Other</legend>
 					<Checkbox    bind:checked={has_engagement}       label='Tweets that have engagement' hint='(unclear what it means)' />
 					<Checkbox    bind:checked={with_native_retweets} label='Tweets with with native retweets' />
-					<InputNumber bind:value={min_faves}              label='Tweets with at least N likes'    min=0 />
-					<InputNumber bind:value={min_replies}            label='Tweets with at least N replies'  min=0 />
-					<InputNumber bind:value={min_retweets}           label='Tweets with at least N retweets' min=0 />
+					<InputNumber bind:value={min_faves}              label='Tweets with at least N likes'    min={0} />
+					<InputNumber bind:value={min_replies}            label='Tweets with at least N replies'  min={0} />
+					<InputNumber bind:value={min_retweets}           label='Tweets with at least N retweets' min={0} />
 				</fieldset>
 
 			</div>
