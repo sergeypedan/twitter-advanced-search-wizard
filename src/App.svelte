@@ -36,19 +36,19 @@
 	let with_question:        boolean = false;
 	let with_videos:          boolean = false;
 
-	$: fmt_with_links             = function(t: boolean): string { return !t ? '' : 'filter:links' }
-	$: fmt_with_videos            = function(t: boolean): string { return !t ? '' : 'filter:videos' }
-	$: fmt_with_hashtags          = function(t: boolean): string { return !t ? '' : 'filter:hashtags' }
-	$: fmt_with_attached_video    = function(t: boolean): string { return !t ? '' : 'filter:native_video' }
-	$: fmt_with_image_or_video    = function(t: boolean): string { return !t ? '' : 'filter:media' }
-	$: fmt_images                 = function(t: boolean): string { return !t ? '' : 'filter:images' }
-	$: fmt_from_verified          = function(t: boolean): string { return !t ? '' : 'filter:verified' }
-	$: fmt_from_unverified        = function(t: boolean): string { return !t ? '' : '-filter-verified' }
-	$: fmt_social                 = function(t: boolean): string { return !t ? '' : 'filter:social' }
-	$: fmt_has_engagement         = function(t: boolean): string { return !t ? '' : 'filter:has_engagement' }
-	$: fmt_linking_to_news        = function(t: boolean): string { return !t ? '' : 'filter:link_to_news' }
-	$: fmt_with_native_retweets   = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
-	$: fmt_with_question          = function(t: boolean): string { return !t ? '' : `?` }
+	$: fmt_with_links           = function(t: boolean): string { return !t ? '' : 'filter:links' }
+	$: fmt_with_videos          = function(t: boolean): string { return !t ? '' : 'filter:videos' }
+	$: fmt_with_hashtags        = function(t: boolean): string { return !t ? '' : 'filter:hashtags' }
+	$: fmt_with_attached_video  = function(t: boolean): string { return !t ? '' : 'filter:native_video' }
+	$: fmt_with_image_or_video  = function(t: boolean): string { return !t ? '' : 'filter:media' }
+	$: fmt_images               = function(t: boolean): string { return !t ? '' : 'filter:images' }
+	$: fmt_from_verified        = function(t: boolean): string { return !t ? '' : 'filter:verified' }
+	$: fmt_from_unverified      = function(t: boolean): string { return !t ? '' : '-filter-verified' }
+	$: fmt_social               = function(t: boolean): string { return !t ? '' : 'filter:social' }
+	$: fmt_has_engagement       = function(t: boolean): string { return !t ? '' : 'filter:has_engagement' }
+	$: fmt_linking_to_news      = function(t: boolean): string { return !t ? '' : 'filter:link_to_news' }
+	$: fmt_with_native_retweets = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
+	$: fmt_with_question        = function(t: boolean): string { return !t ? '' : `?` }
 
 	$: fmt_by_username       = function(str: string): string { return !str ? '' : `from:${str}` }
 	$: fmt_date_since        = function(str: string): string { return !str ? '' : `since:${str}` }
