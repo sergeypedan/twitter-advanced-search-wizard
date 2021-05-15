@@ -1,0 +1,11 @@
+input[type="date"] {
+	max-width: 200px;
+}
+
+.fieldset-1 {
+	border: solid 1px hsl(0, 0%, 85%);
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
