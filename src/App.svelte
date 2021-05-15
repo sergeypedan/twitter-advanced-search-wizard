@@ -36,35 +36,35 @@
 	let with_question:        boolean = false;
 	let with_videos:          boolean = false;
 
-	$: fmt_with_links           = function(t: boolean): string { return !t ? '' : 'filter:links' }
-	$: fmt_with_videos          = function(t: boolean): string { return !t ? '' : 'filter:videos' }
-	$: fmt_with_hashtags        = function(t: boolean): string { return !t ? '' : 'filter:hashtags' }
-	$: fmt_with_attached_video  = function(t: boolean): string { return !t ? '' : 'filter:native_video' }
-	$: fmt_with_image_or_video  = function(t: boolean): string { return !t ? '' : 'filter:media' }
-	$: fmt_images               = function(t: boolean): string { return !t ? '' : 'filter:images' }
-	$: fmt_from_verified        = function(t: boolean): string { return !t ? '' : 'filter:verified' }
-	$: fmt_from_unverified      = function(t: boolean): string { return !t ? '' : '-filter-verified' }
-	$: fmt_social               = function(t: boolean): string { return !t ? '' : 'filter:social' }
-	$: fmt_has_engagement       = function(t: boolean): string { return !t ? '' : 'filter:has_engagement' }
-	$: fmt_linking_to_news      = function(t: boolean): string { return !t ? '' : 'filter:link_to_news' }
-	$: fmt_with_native_retweets = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
-	$: fmt_with_question        = function(t: boolean): string { return !t ? '' : `?` }
+	const fmt_with_links           = function(t: boolean): string { return !t ? '' : 'filter:links' }
+	const fmt_with_videos          = function(t: boolean): string { return !t ? '' : 'filter:videos' }
+	const fmt_with_hashtags        = function(t: boolean): string { return !t ? '' : 'filter:hashtags' }
+	const fmt_with_attached_video  = function(t: boolean): string { return !t ? '' : 'filter:native_video' }
+	const fmt_with_image_or_video  = function(t: boolean): string { return !t ? '' : 'filter:media' }
+	const fmt_images               = function(t: boolean): string { return !t ? '' : 'filter:images' }
+	const fmt_from_verified        = function(t: boolean): string { return !t ? '' : 'filter:verified' }
+	const fmt_from_unverified      = function(t: boolean): string { return !t ? '' : '-filter-verified' }
+	const fmt_social               = function(t: boolean): string { return !t ? '' : 'filter:social' }
+	const fmt_has_engagement       = function(t: boolean): string { return !t ? '' : 'filter:has_engagement' }
+	const fmt_linking_to_news      = function(t: boolean): string { return !t ? '' : 'filter:link_to_news' }
+	const fmt_with_native_retweets = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
+	const fmt_with_question        = function(t: boolean): string { return !t ? '' : `?` }
 
-	$: fmt_by_username       = function(str: string): string { return !str ? '' : `from:${str}` }
-	$: fmt_date_since        = function(str: string): string { return !str ? '' : `since:${str}` }
-	$: fmt_date_until        = function(str: string): string { return !str ? '' : `until:${str}` }
-	$: fmt_exact_phrase      = function(str: string): string { return !str ? '' : `"${str}"` }
-	$: fmt_exclude_word      = function(str: string): string { return !str ? '' : `-${str}` }
-	$: fmt_language          = function(str: string): string { return !str ? '' : `lang:${str}` }
-	$: fmt_link_to_domain    = function(str: string): string { return !str ? '' : `url:${str}` }
-	$: fmt_mention_username  = function(str: string): string { return !str ? '' : `@${str}` }
-	$: fmt_reply_to_username = function(str: string): string { return !str ? '' : `to:${str}` }
-	$: fmt_tweet_id_min      = function(str: string): string { return !str ? '' : `since_id:${str}` }
-	$: fmt_tweet_id_max      = function(str: string): string { return !str ? '' : `max_id:${str}` }
+	const fmt_by_username       = function(str: string): string { return !str ? '' : `from:${str}` }
+	const fmt_date_since        = function(str: string): string { return !str ? '' : `since:${str}` }
+	const fmt_date_until        = function(str: string): string { return !str ? '' : `until:${str}` }
+	const fmt_exact_phrase      = function(str: string): string { return !str ? '' : `"${str}"` }
+	const fmt_exclude_word      = function(str: string): string { return !str ? '' : `-${str}` }
+	const fmt_language          = function(str: string): string { return !str ? '' : `lang:${str}` }
+	const fmt_link_to_domain    = function(str: string): string { return !str ? '' : `url:${str}` }
+	const fmt_mention_username  = function(str: string): string { return !str ? '' : `@${str}` }
+	const fmt_reply_to_username = function(str: string): string { return !str ? '' : `to:${str}` }
+	const fmt_tweet_id_min      = function(str: string): string { return !str ? '' : `since_id:${str}` }
+	const fmt_tweet_id_max      = function(str: string): string { return !str ? '' : `max_id:${str}` }
 
-	$: fmt_min_faves    = function(n: number): string { return n <= 0 ? '' : `min_faves:${n}` }
-	$: fmt_min_replies  = function(n: number): string { return n <= 0 ? '' : `min_replies:${n}` }
-	$: fmt_min_retweets = function(n: number): string { return n <= 0 ? '' : `min_retweets:${n}` }
+	const fmt_min_faves    = function(n: number): string { return n <= 0 ? '' : `min_faves:${n}` }
+	const fmt_min_replies  = function(n: number): string { return n <= 0 ? '' : `min_replies:${n}` }
+	const fmt_min_retweets = function(n: number): string { return n <= 0 ? '' : `min_retweets:${n}` }
 
 	$: query = () => [
 		fmt_with_question(with_question),
