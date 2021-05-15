@@ -23,7 +23,7 @@
 {/if}
 <div class="field has-addons">
 	<div class="control">
-		<span class="button is-static"><i class="fas fa-{fa_icon}"></i></span>
+		<span class="button is-static"><i class="far fa-{fa_icon}"></i></span>
 	</div>
 	<div class="control">
 		<input class="input" type="date" {disabled} {max} {min} {name} {placeholder} {readonly} {required} {step} bind:value={value} id={html_id}>
