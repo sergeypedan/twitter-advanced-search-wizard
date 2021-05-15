@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let autofocus: boolean = false;
 	export let disabled:  boolean = false;
 	export let readonly:  boolean = false;
 	export let required:  boolean = false;
@@ -12,9 +11,9 @@
 	export let placeholder: string = '1970-05-31';
 	export let value:       string = '';
 
-	export let max: integer;
-	export let min: integer;
-	export let step: integer;
+	export let max:  number;
+	export let min:  number;
+	export let step: number;
 </script>
 
 {#if label !== ''}

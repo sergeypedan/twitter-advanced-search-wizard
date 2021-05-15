@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup --config",
+    "dev": "rollup --config --watch",
     "start": "sirv public --no-clear",
     "validate": "svelte-check"
   },

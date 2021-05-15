@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let autofocus: boolean = false;
 	export let disabled: boolean = false;
 	export let readonly: boolean = false;
 	export let required: boolean = false;
