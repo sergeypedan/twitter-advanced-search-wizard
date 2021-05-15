@@ -1,14 +1,18 @@
 <script lang="ts">
-	export let checked: boolean = false;
+	import { random_html_id } from './html_id_generator.js';
+
+	export let checked:  boolean = false;
 	export let disabled: boolean = false;
-	export let label: string = 'Checkbox label';
-	export let hint:  string = '';
+
+	export let hint:    string = '';
+	export let label:   string = 'Checkbox label';
+	export let html_id: string = random_html_id();
 </script>
 
 <div class="field">
 	<div class="control">
-		<label class="checkbox">
-			<input type="checkbox" bind:checked={checked} {disabled}> {label}
+		<label class="checkbox" for={html_id}>
+			<input type="checkbox" bind:checked={checked} {disabled} id={html_id}> {label}
 		</label>
 		{#if hint !== ''}
 			<p class="help">{hint}</p>

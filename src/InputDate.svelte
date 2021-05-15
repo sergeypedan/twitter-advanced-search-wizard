@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { random_html_id } from './html_id_generator.js';
+
 	export let disabled:  boolean = false;
 	export let readonly:  boolean = false;
 	export let required:  boolean = false;
 
-	export let fa_icon:     string = 'calendar';
+	export let fa_icon:     string = 'calendar-alt';
 	export let hint:        string = '';
-	export let html_id:     string = 'test-id';
+	export let html_id:     string = random_html_id();
 	export let label:       string = '';
 	export let name:        string = '';
 	export let placeholder: string = '1970-05-31';
