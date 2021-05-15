@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { listen_copy_on_selector } from './utils/copying.js'
+	import { listen_copy_on_selector } from './utils/copying.js'
 
-	import Checkbox    from './Checkbox.svelte';
-	import InputDate   from './InputDate.svelte';
-	import InputNumber from './InputNumber.svelte';
-	import InputText   from './InputText.svelte';
+	import Checkbox    from './components/Checkbox.svelte';
+	import InputDate   from './components/InputDate.svelte';
+	import InputNumber from './components/InputNumber.svelte';
+	import InputText   from './components/InputText.svelte';
+
+	import * as fmt from './logic/formatters.js'
 
 	let author_username:   string = '';
 	let date_since:        string = '';
@@ -36,69 +38,39 @@
 	let with_question:        boolean = false;
 	let with_videos:          boolean = false;
 
-	const fmt_with_links           = function(t: boolean): string { return !t ? '' : 'filter:links' }
-	const fmt_with_videos          = function(t: boolean): string { return !t ? '' : 'filter:videos' }
-	const fmt_with_hashtags        = function(t: boolean): string { return !t ? '' : 'filter:hashtags' }
-	const fmt_with_attached_video  = function(t: boolean): string { return !t ? '' : 'filter:native_video' }
-	const fmt_with_image_or_video  = function(t: boolean): string { return !t ? '' : 'filter:media' }
-	const fmt_images               = function(t: boolean): string { return !t ? '' : 'filter:images' }
-	const fmt_from_verified        = function(t: boolean): string { return !t ? '' : 'filter:verified' }
-	const fmt_from_unverified      = function(t: boolean): string { return !t ? '' : '-filter-verified' }
-	const fmt_social               = function(t: boolean): string { return !t ? '' : 'filter:social' }
-	const fmt_has_engagement       = function(t: boolean): string { return !t ? '' : 'filter:has_engagement' }
-	const fmt_linking_to_news      = function(t: boolean): string { return !t ? '' : 'filter:link_to_news' }
-	const fmt_with_native_retweets = function(t: boolean): string { return !t ? '' : `filter:nativeretweets` }
-	const fmt_with_question        = function(t: boolean): string { return !t ? '' : `?` }
-
-	const fmt_by_username       = function(str: string): string { return !str ? '' : `from:${str}` }
-	const fmt_date_since        = function(str: string): string { return !str ? '' : `since:${str}` }
-	const fmt_date_until        = function(str: string): string { return !str ? '' : `until:${str}` }
-	const fmt_exact_phrase      = function(str: string): string { return !str ? '' : `"${str}"` }
-	const fmt_exclude_word      = function(str: string): string { return !str ? '' : `-${str}` }
-	const fmt_language          = function(str: string): string { return !str ? '' : `lang:${str}` }
-	const fmt_link_to_domain    = function(str: string): string { return !str ? '' : `url:${str}` }
-	const fmt_mention_username  = function(str: string): string { return !str ? '' : `@${str}` }
-	const fmt_reply_to_username = function(str: string): string { return !str ? '' : `to:${str}` }
-	const fmt_tweet_id_min      = function(str: string): string { return !str ? '' : `since_id:${str}` }
-	const fmt_tweet_id_max      = function(str: string): string { return !str ? '' : `max_id:${str}` }
-
-	const fmt_min_faves    = function(n: number): string { return n <= 0 ? '' : `min_faves:${n}` }
-	const fmt_min_replies  = function(n: number): string { return n <= 0 ? '' : `min_replies:${n}` }
-	const fmt_min_retweets = function(n: number): string { return n <= 0 ? '' : `min_retweets:${n}` }
-
 	$: query = () => [
-		fmt_with_question(with_question),
-		fmt_by_username(author_username),
-		fmt_with_videos(with_videos),
-		fmt_with_links(with_links),
-		fmt_with_hashtags(with_hashtags),
-		fmt_with_attached_video(with_attached_video),
-		fmt_with_image_or_video(with_image_or_video),
-		fmt_date_since(date_since),
-		fmt_date_until(date_until),
-		fmt_exact_phrase(exact_phrase),
-		fmt_exclude_word(exclude_word),
-		fmt_images(with_images),
-		fmt_social(social),
-		fmt_linking_to_news(link_to_news),
-		fmt_has_engagement(has_engagement),
-		fmt_with_native_retweets(with_native_retweets),
-		fmt_language(language),
-		fmt_link_to_domain(link_to_domain),
-		fmt_mention_username(mention_username),
-		fmt_reply_to_username(reply_to_username),
-		fmt_from_verified(from_verified),
-		fmt_from_unverified(from_unverified),
-		fmt_tweet_id_min(tweet_id_min),
-		fmt_tweet_id_max(tweet_id_max),
-		fmt_min_faves(min_faves),
-		fmt_min_replies(min_replies),
-		fmt_min_retweets(min_retweets),
+		fmt.with_question(with_question),
+		fmt.by_username(author_username),
+		fmt.with_videos(with_videos),
+		fmt.with_links(with_links),
+		fmt.with_hashtags(with_hashtags),
+		fmt.with_attached_video(with_attached_video),
+		fmt.with_image_or_video(with_image_or_video),
+		fmt.date_since(date_since),
+		fmt.date_until(date_until),
+		fmt.exact_phrase(exact_phrase),
+		fmt.exclude_word(exclude_word),
+		fmt.images(with_images),
+		fmt.social(social),
+		fmt.linking_to_news(link_to_news),
+		fmt.has_engagement(has_engagement),
+		fmt.with_native_retweets(with_native_retweets),
+		fmt.language(language),
+		fmt.link_to_domain(link_to_domain),
+		fmt.mention_username(mention_username),
+		fmt.reply_to_username(reply_to_username),
+		fmt.from_verified(from_verified),
+		fmt.from_unverified(from_unverified),
+		fmt.tweet_id_min(tweet_id_min),
+		fmt.tweet_id_max(tweet_id_max),
+		fmt.min_faves(min_faves),
+		fmt.min_replies(min_replies),
+		fmt.min_retweets(min_retweets),
 	].filter(string => !!string).join(" ")
 
-  document.addEventListener('DOMContentLoaded', function() {
-    listen_copy_on_selector('[data-clipboard-target]')
-  })
+	document.addEventListener('DOMContentLoaded', function() {
+		listen_copy_on_selector('[data-clipboard-target]')
+	})
 
 
 </script>

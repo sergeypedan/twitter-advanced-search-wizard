@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { random_html_id } from './html_id_generator.js';
+	import { random_html_id } from '../utils/html_id_generator.js';
 
 	export let disabled:  boolean = false;
 	export let readonly:  boolean = false;
